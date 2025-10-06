@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Bake | Premium Healthy Snacks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light-green: #E8F5E8;
+            --medium-green: #A7D7A7;
+            --dark-green: #4A7C5E;
+            --light-pink: #FFE8E8;
+            --medium-pink: #F5C6C6;
+            --dark-pink: #D4A5A5;
+            --cream: #FFFBF5;
+            --text-dark: #2D3748;
+            --text-light: #718096;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--cream);
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-green);
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: white !important;
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--light-green);
+            box-shadow: 0 2px 10px rgba(74, 124, 94, 0.1);
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--dark-green) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark) !important;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--dark-green) !important;
+        }
+        
+        /* Cart Badge */
+        .cart-badge {
+            background-color: var(--dark-pink);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.7rem;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--cream) 50%, var(--light-pink) 100%);
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Categories */
+        .categories-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .category-card {
+            background: white;
+            border: 2px solid var(--light-green);
+            border-radius: 15px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--medium-green);
+            box-shadow: 0 15px 30px rgba(167, 215, 167, 0.2);
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .category-card.pink {
+            border-color: var(--light-pink);
+        }
+        
+        .category-card.pink:hover {
+            border-color: var(--medium-pink);
+            box-shadow: 0 15px 30px rgba(245, 198, 198, 0.2);
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .category-card .category-icon {
+            color: var(--dark-green);
+        }
+        
+        .category-card.pink .category-icon {
+            color: var(--dark-pink);
+        }
+        
+        /* Products Grid */
+        .products-section {
+            padding: 4rem 0;
+            background: var(--cream);
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(74, 124, 94, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-green);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(74, 124, 94, 0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .product-badge {
+            background: var(--medium-green);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0 4px 8px 0;
+        }
+        
+        .product-badge.pink {
+            background: var(--medium-pink);
+        }
+        
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-green);
+        }
+        
+        /* Product Detail */
+        .product-detail-section {
+            padding: 4rem 0;
+            background: white;
+            display: none;
+        }
+        
+        .detail-image {
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(74, 124, 94, 0.1);
+        }
+        
+        .nutrition-facts {
+            background: var(--light-green);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        
+        .ingredients-list {
+            background: var(--light-pink);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background: var(--dark-green);
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--medium-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--dark-green);
+            color: var(--dark-green);
+            background: transparent;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background: var(--dark-green);
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-green);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer a {
+            color: #CBD5E0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        /* Back to Products */
+        .back-link {
+            color: var(--dark-green);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-link:hover {
+            color: var(--medium-green);
+        }
+        
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-green);
+        }
+        
+        /* About Us Section */
+        .about-section {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .about-image {
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(74, 124, 94, 0.1);
+        }
+        
+        /* Modal */
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+        }
+        
+        .modal-header {
+            border-bottom: 2px solid var(--light-green);
+            background: var(--cream);
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .modal-footer {
+            border-top: 2px solid var(--light-green);
+            background: var(--cream);
+            border-radius: 0 0 15px 15px;
+        }
+        
+        /* Cart Section */
+        .cart-section {
+            padding: 4rem 0;
+            background: var(--cream);
+            display: none;
+        }
+        
+        .cart-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(74, 124, 94, 0.1);
+        }
+        
+        .cart-summary {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(74, 124, 94, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showHome()">Healthy Bake</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#" onclick="showHome()">Home</a>
+                <a class="nav-link" href="#" onclick="showCategories()">Shop</a>
+                <a class="nav-link" href="#" onclick="showAbout()">About Us</a>
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</a>
+                <a class="nav-link position-relative" href="#" onclick="showCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home-section">
+        <div class="container">
+            <h1 class="hero-title">Healthy Snacking, Reimagined</h1>
+            <p class="hero-subtitle">Discover our collection of premium healthy snacks made with natural ingredients, no refined sugar, and lots of love.</p>
+            <button class="btn btn-primary" onclick="showCategories()">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Our Categories</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card" onclick="showProducts('makhana')">
+                        <span class="category-icon">🥠</span>
+                        <h4>Makhana Snacks</h4>
+                        <p class="text-muted">Crunchy fox nut delights</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card pink" onclick="showProducts('cookies')">
+                        <span class="category-icon">🍪</span>
+                        <h4>Healthy Cookies</h4>
+                        <p class="text-muted">Guilt-free indulgence</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card" onclick="showProducts('bars')">
+                        <span class="category-icon">💪</span>
+                        <h4>Energy Bars</h4>
+                        <p class="text-muted">Protein-packed fuel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section" id="products-section" style="display: none;">
+        <div class="container">
+            <a class="back-link" onclick="showCategories()">
+                <i class="fas fa-arrow-left"></i> Back to Categories
+            </a>
+            <h2 id="category-title" class="section-title"></h2>
+            <div class="row g-4" id="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Section -->
+    <section class="product-detail-section" id="product-detail-section">
+        <div class="container">
+            <a class="back-link" onclick="showProducts(currentCategory)">
+                <i class="fas fa-arrow-left"></i> Back to Products
+            </a>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <img id="detail-image" src="" alt="" class="img-fluid detail-image">
+                </div>
+                <div class="col-lg-6">
+                    <h1 id="detail-name"></h1>
+                    <p id="detail-category" class="text-muted mb-3"></p>
+                    <div id="detail-badges" class="mb-3"></div>
+                    <h3 id="detail-price" class="mb-4"></h3>
+                    
+                    <div class="mb-4">
+                        <h5>Description</h5>
+                        <p id="detail-description"></p>
+                    </div>
+                    
+                    <div class="ingredients-list mb-4">
+                        <h5>Ingredients</h5>
+                        <p id="detail-ingredients"></p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5>Health Benefits</h5>
+                        <p id="detail-benefits"></p>
+                    </div>
+                    
+                    <div class="nutrition-facts mb-4">
+                        <h5>Nutrition Facts (per serving)</h5>
+                        <p id="detail-nutrition"></p>
+                    </div>
+                    
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-primary" id="add-to-cart-btn">Add to Cart</button>
+                        <button class="btn btn-outline">Save for Later</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">About Healthy Bake</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <img src="https://images.unsplash.com/photo-1556909114-4d0d853e5e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="About Healthy Bake" class="img-fluid about-image">
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Our Story</h3>
+                    <p class="mb-4">Founded in 2020, Healthy Bake was born out of a passion for creating delicious, nutritious snacks that don't compromise on taste. Our journey began in a small home kitchen in Pune, where we experimented with wholesome ingredients to create snacks that are both healthy and satisfying.</p>
+                    
+                    <h4 class="mb-3">Our Mission</h4>
+                    <p class="mb-4">To make healthy snacking accessible, enjoyable, and convenient for everyone. We believe that good nutrition should never be boring, which is why we focus on creating exciting flavors using only natural, high-quality ingredients.</p>
+                    
+                    <h4 class="mb-3">Our Values</h4>
+                    <ul class="mb-4">
+                        <li>100% Natural Ingredients</li>
+                        <li>No Refined Sugar</li>
+                        <li>Gluten-Free Options</li>
+                        <li>Vegan-Friendly Recipes</li>
+                        <li>Environmentally Conscious Packaging</li>
+                    </ul>
+                    
+                    <h4 class="mb-3">Connect With Us</h4>
+                    <p>Follow us on Instagram <strong>@healthybake</strong> for the latest updates, recipes, and special offers!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section" id="cart-section">
+        <div class="container">
+            <a class="back-link" onclick="showCategories()">
+                <i class="fas fa-arrow-left"></i> Continue Shopping
+            </a>
+            <h2 class="section-title">Your Cart</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="cart-items">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="cart-summary">
+                        <h4 class="mb-4">Order Summary</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal">₹0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Shipping</span>
+                            <span>₹50</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <span><strong>Total</strong></span>
+                            <span><strong id="cart-total">₹50</strong></span>
+                        </div>
+                        <button class="btn btn-primary w-100 mb-3" onclick="checkout()">Proceed to Checkout</button>
+                        <p class="text-center small text-muted">WhatsApp orders available on 7082236529</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>Healthy Bake</h5>
+                    <p>Premium healthy snacks crafted with natural ingredients and lots of love.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#"><i class="fab fa-instagram"></i> @healthybake</a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h6>Shop</h6>
+                    <a href="#" class="d-block mb-2" onclick="showProducts('makhana')">Makhana Snacks</a>
+                    <a href="#" class="d-block mb-2" onclick="showProducts('cookies')">Healthy Cookies</a>
+                    <a href="#" class="d-block mb-2" onclick="showProducts('bars')">Energy Bars</a>
+                </div>
+                <div class="col-lg-3 col-6 mb-4">
+                    <h6>Information</h6>
+                    <a href="#" class="d-block mb-2" onclick="showAbout()">About Us</a>
+                    <a href="#" class="d-block mb-2">Ingredients</a>
+                    <a href="#" class="d-block mb-2">Nutrition</a>
+                    <a href="#" class="d-block mb-2">Delivery</a>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h6>Contact</h6>
+                    <p class="mb-2"><i class="fas fa-envelope me-2"></i> hello@healthybake.com</p>
+                    <p class="mb-2"><i class="fab fa-instagram me-2"></i> @healthybake</p>
+                    <p><i class="fab fa-whatsapp me-2"></i> 7082236529</p>
+                </div>
+            </div>
+            <div class="text-center pt-3 border-top border-secondary">
+                <p class="mb-0">&copy; 2025 Healthy Bake. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Sign In to Healthy Bake</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="login-form">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="remember">
+                            <label class="form-check-label" for="remember">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Create an Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signup-form">
+                        <div class="mb-3">
+                            <label for="fullname" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="signup-email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="signup-email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="signup-password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="signup-password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm-password" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Database Simulation - This would come from a backend API in a real application
+        const productsDatabase = {
+            "makhana": [
+                {
+                    id: 1,
+                    name: "Peri Peri Masala Makhana",
+                    category: "Makhana Snacks",
+                    price: 199,
+                    image: "https://images.unsplash.com/photo-1587335810146-25e79b2d2c5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Fiery peri peri flavor with traditional Indian spices. The #1 top-selling makhana flavor that offers a familiar, spicy, and tangy taste appealing to the Indian palate.",
+                    ingredients: "Organic Makhana, Peri Peri Spice Blend, Garlic Powder, Onion Powder, Lemon Powder, Paprika, Olive Oil, Himalayan Salt",
+                    benefits: "Metabolism boosting, gluten-free, low calorie, satisfies spicy cravings healthily",
+                    nutrition: "Calories: 120 | Protein: 4g | Carbs: 20g | Fat: 2g | Fiber: 3g",
+                    badges: ["Top Seller", "Spicy", "Gluten Free", "Low Cal"]
+                },
+                {
+                    id: 2,
+                    name: "Classic Salted Makhana",
+                    category: "Makhana Snacks",
+                    price: 149,
+                    image: "https://images.unsplash.com/photo-1612927601605-ef98b04b6c3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Simple, lightly salted fox nuts roasted to perfection. The go-to for health purists and perfect for using in cooking or as a versatile base for custom flavors.",
+                    ingredients: "Organic Makhana, Himalayan Pink Salt, Cold-pressed Coconut Oil",
+                    benefits: "High protein, gluten-free, versatile, low calorie, pure snack",
+                    nutrition: "Calories: 110 | Protein: 4g | Carbs: 21g | Fat: 1g | Fiber: 2g",
+                    badges: ["Pure", "Gluten Free", "High Protein", "Versatile"]
+                },
+                {
+                    id: 3,
+                    name: "Salt & Pepper Makhana",
+                    category: "Makhana Snacks",
+                    price: 159,
+                    image: "https://images.unsplash.com/photo-1587335810146-25e79b2d2c5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "A global classic that never fails. Simple yet flavorful with the perfect balance of salt and cracked black pepper.",
+                    ingredients: "Organic Makhana, Himalayan Pink Salt, Freshly Cracked Black Pepper, Olive Oil",
+                    benefits: "Digestive aid, gluten-free, low calorie, universal appeal",
+                    nutrition: "Calories: 115 | Protein: 4g | Carbs: 20g | Fat: 2g | Fiber: 2g",
+                    badges: ["Classic", "Gluten Free", "Digestive", "Low Cal"]
+                },
+                {
+                    id: 4,
+                    name: "Cheesy Makhana",
+                    category: "Makhana Snacks",
+                    price: 189,
+                    image: "https://images.unsplash.com/photo-1566479331010-2d201141e0c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Irresistible cheesy flavor that's especially popular among kids and young adults. A highly addictive, savory snack without the guilt.",
+                    ingredients: "Organic Makhana, Nutritional Yeast, Cheddar Powder, Garlic Powder, Onion Powder, Coconut Oil",
+                    benefits: "Calcium-rich, gluten-free, satisfies cheese cravings, high protein",
+                    nutrition: "Calories: 130 | Protein: 5g | Carbs: 18g | Fat: 4g | Fiber: 2g",
+                    badges: ["Cheesy", "Gluten Free", "High Protein", "Calcium"]
+                }
+            ],
+            "cookies": [
+                {
+                    id: 5,
+                    name: "Almond Coconut Cookies",
+                    category: "Healthy Cookies",
+                    price: 249,
+                    image: "https://images.unsplash.com/photo-1558961364-14b49c3e7b83?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Buttery almond cookies with shredded coconut. Crisp on the outside, soft inside with natural sweetness.",
+                    ingredients: "Almond Flour, Shredded Coconut, Coconut Sugar, Almond Butter, Free-range Eggs, Vanilla Extract",
+                    benefits: "Gluten-free, high in protein from almonds, natural sweetness, satisfying texture",
+                    nutrition: "Calories: 95 | Protein: 3g | Carbs: 8g | Fat: 6g | Fiber: 2g",
+                    badges: ["Gluten Free", "High Protein", "No Sugar", "Keto Friendly"]
+                },
+                {
+                    id: 6,
+                    name: "Oatmeal Date Cookies",
+                    category: "Healthy Cookies",
+                    price: 229,
+                    image: "https://images.unsplash.com/photo-1622993079585-8fb3c8c90e6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Chewy oatmeal cookies sweetened naturally with dates and studded with raisins. A classic made clean.",
+                    ingredients: "Whole Grain Oats, Medjool Dates, Raisins, Coconut Oil, Cinnamon, Baking Soda, Sea Salt",
+                    benefits: "High fiber, natural sweetness, vegan, supports digestive health",
+                    nutrition: "Calories: 110 | Protein: 2g | Carbs: 18g | Fat: 4g | Fiber: 3g",
+                    badges: ["High Fiber", "Vegan", "No Sugar", "Digestive Health"]
+                },
+                {
+                    id: 7,
+                    name: "Multigrain Nankhatai",
+                    category: "Healthy Cookies",
+                    price: 269,
+                    image: "https://images.unsplash.com/photo-1558961364-14b49c3e7b83?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "A healthier take on the classic Indian shortbread cookie, made with multigrain flour and jaggery.",
+                    ingredients: "Whole Wheat Flour, Oat Flour, Ragi Flour, Jaggery, Ghee, Cardamom, Almonds",
+                    benefits: "High fiber, multigrain goodness, traditional flavor with modern health twist",
+                    nutrition: "Calories: 105 | Protein: 2g | Carbs: 15g | Fat: 4g | Fiber: 2g",
+                    badges: ["Multigrain", "High Fiber", "Traditional", "No Refined Sugar"]
+                }
+            ],
+            "bars": [
+                {
+                    id: 8,
+                    name: "Chocolate Peanut Butter Protein Bars",
+                    category: "Energy Bars",
+                    price: 279,
+                    image: "https://images.unsplash.com/photo-1611859268555-63cdfb1dab0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Our #1 best-selling protein bar with the classic chocolate and peanut butter combination. No-bake, chewy, and incredibly satisfying.",
+                    ingredients: "Rolled Oats, Chocolate Protein Powder, Natural Peanut Butter, Honey, Almond Milk, Dark Chocolate Chips, Vanilla Extract",
+                    benefits: "20g plant protein, natural energy, gluten-free, muscle recovery, satisfies cravings",
+                    nutrition: "Calories: 210 | Protein: 20g | Carbs: 15g | Fat: 8g | Fiber: 5g",
+                    badges: ["Top Seller", "High Protein", "No Bake", "Energy Boost"]
+                },
+                {
+                    id: 9,
+                    name: "Date & Nut Protein Bars",
+                    category: "Energy Bars",
+                    price: 269,
+                    image: "https://images.unsplash.com/photo-1600952844770-7e1ca2be6f2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Plant-based protein bars with dates, almonds and walnuts. Perfect pre-workout fuel or afternoon pick-me-up.",
+                    ingredients: "Dates, Almonds, Walnuts, Plant Protein, Chia Seeds, Coconut Oil, Vanilla",
+                    benefits: "15g plant protein, natural energy, gluten-free, muscle recovery",
+                    nutrition: "Calories: 195 | Protein: 15g | Carbs: 22g | Fat: 9g | Fiber: 4g",
+                    badges: ["Plant Based", "High Protein", "Gluten Free", "Energy"]
+                },
+                {
+                    id: 10,
+                    name: "Almond Coconut Energy Bars",
+                    category: "Energy Bars",
+                    price: 259,
+                    image: "https://images.unsplash.com/photo-1611859268555-63cdfb1dab0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Light, nutritious bars with almonds and coconut. Naturally gluten-free with healthy fats and great flavor.",
+                    ingredients: "Almonds, Almond Butter, Unsweetened Shredded Coconut, Oats, Honey, Vanilla Protein Powder",
+                    benefits: "Sustained energy, gluten-free, healthy fats, satisfying texture",
+                    nutrition: "Calories: 185 | Protein: 8g | Carbs: 18g | Fat: 10g | Fiber: 3g",
+                    badges: ["Gluten Free", "Healthy Fats", "Sustained Energy", "Natural"]
+                }
+            ]
+        };
+
+        // Current state
+        let currentCategory = '';
+        let currentProduct = null;
+        let cart = JSON.parse(localStorage.getItem('healthyBakeCart')) || [];
+        
+        // Show home section
+        function showHome() {
+            document.getElementById('home-section').style.display = 'block';
+            document.getElementById('categories-section').style.display = 'none';
+            document.getElementById('products-section').style.display = 'none';
+            document.getElementById('product-detail-section').style.display = 'none';
+            document.getElementById('about-section').style.display = 'none';
+            document.getElementById('cart-section').style.display = 'none';
+        }
+        
+        // Show categories
+        function showCategories() {
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('categories-section').style.display = 'block';
+            document.getElementById('products-section').style.display = 'none';
+            document.getElementById('product-detail-section').style.display = 'none';
+            document.getElementById('about-section').style.display = 'none';
+            document.getElementById('cart-section').style.display = 'none';
+        }
+        
+        // Show products for a category
+        function showCategory(category) {
+            currentCategory = category;
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('categories-section').style.display = 'none';
+            document.getElementById('products-section').style.display = 'block';
+            document.getElementById('product-detail-section').style.display = 'none';
+            document.getElementById('about-section').style.display = 'none';
+            document.getElementById('cart-section').style.display = 'none';
+            
+            // Update category title
+            const categoryTitles = {
+                'makhana': 'Makhana Snacks',
+                'cookies': 'Healthy Cookies', 
+                'bars': 'Energy Bars'
+            };
+            document.getElementById('category-title').textContent = categoryTitles[category];
+            
+            // Load products
+            loadProducts(category);
+        }
+        
+        // Show products (for back navigation)
+        function showProducts(category) {
+            showCategory(category);
+        }
+        
+        // Load products for a category
+        function loadProducts(category) {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+            
+            const products = productsDatabase[category];
+            
+            products.forEach(product => {
+                const badgesHtml = product.badges.map(badge => 
+                    `<span class="product-badge ${Math.random() > 0.5 ? 'pink' : ''}">${badge}</span>`
+                ).join('');
+                
+                const productHtml = `
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card" onclick="showProductDetail(${product.id})">
+                            <img src="${product.image}" alt="${product.name}" class="product-image">
+                            <div class="p-3">
+                                <h5>${product.name}</h5>
+                                <p class="text-muted small mb-2">${product.description.substring(0, 80)}...</p>
+                                <div class="mb-2">${badgesHtml}</div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="product-price">₹${product.price}</span>
+                                    <button class="btn btn-primary btn-sm">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productsGrid.innerHTML += productHtml;
+            });
+        }
+        
+        // Show product detail
+        function showProductDetail(productId) {
+            // Find product in all categories
+            let product = null;
+            for (const category in productsDatabase) {
+                product = productsDatabase[category].find(p => p.id === productId);
+                if (product) break;
+            }
+            
+            if (!product) return;
+            
+            currentProduct = product;
+            
+            // Update detail page
+            document.getElementById('detail-image').src = product.image;
+            document.getElementById('detail-image').alt = product.name;
+            document.getElementById('detail-name').textContent = product.name;
+            document.getElementById('detail-category').textContent = product.category;
+            document.getElementById('detail-price').textContent = `₹${product.price}`;
+            document.getElementById('detail-description').textContent = product.description;
+            document.getElementById('detail-ingredients').textContent = product.ingredients;
+            document.getElementById('detail-benefits').textContent = product.benefits;
+            document.getElementById('detail-nutrition').textContent = product.nutrition;
+            
+            // Update badges
+            const badgesContainer = document.getElementById('detail-badges');
+            badgesContainer.innerHTML = '';
+            product.badges.forEach(badge => {
+                badgesContainer.innerHTML += `<span class="product-badge ${Math.random() > 0.5 ? 'pink' : ''}">${badge}</span>`;
+            });
+            
+            // Update add to cart button
+            document.getElementById('add-to-cart-btn').onclick = function() {
+                addToCart(product);
+            };
+            
+            // Show detail section
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('categories-section').style.display = 'none';
+            document.getElementById('products-section').style.display = 'none';
+            document.getElementById('product-detail-section').style.display = 'block';
+            document.getElementById('about-section').style.display = 'none';
+            document.getElementById('cart-section').style.display = 'none';
+        }
+        
+        // Show about us section
+        function showAbout() {
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('categories-section').style.display = 'none';
+            document.getElementById('products-section').style.display = 'none';
+            document.getElementById('product-detail-section').style.display = 'none';
+            document.getElementById('about-section').style.display = 'block';
+            document.getElementById('cart-section').style.display = 'none';
+        }
+        
+        // Show cart section
+        function showCart() {
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('categories-section').style.display = 'none';
+            document.getElementById('products-section').style.display = 'none';
+            document.getElementById('product-detail-section').style.display = 'none';
+            document.getElementById('about-section').style.display = 'none';
+            document.getElementById('cart-section').style.display = 'block';
+            
+            updateCartDisplay();
+        }
+        
+        // Add to cart function
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('healthyBakeCart', JSON.stringify(cart));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show success message
+            alert(`${product.name} added to cart!`);
+        }
+        
+        // Update cart count in navbar
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+        
+        // Update cart display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+            const cartTotal = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-center py-5">Your cart is empty</p>';
+                cartSubtotal.textContent = '₹0';
+                cartTotal.textContent = '₹50';
+                return;
+            }
+            
+            let subtotal = 0;
+            let cartHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                cartHTML += `
+                    <div class="cart-item">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <img src="${item.image}" alt="${item.name}" class="img-fluid rounded" style="height: 80px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-4">
+                                <h5>${item.name}</h5>
+                                <p class="text-muted mb-0">₹${item.price}</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-sm btn-outline" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                    <span class="mx-3">${item.quantity}</span>
+                                    <button class="btn btn-sm btn-outline" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <h5>₹${itemTotal}</h5>
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${item.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = cartHTML;
+            cartSubtotal.textContent = `₹${subtotal}`;
+            cartTotal.textContent = `₹${subtotal + 50}`;
+        }
+        
+        // Update item quantity in cart
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            
+            if (item) {
+                item.quantity += change;
+                
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    localStorage.setItem('healthyBakeCart', JSON.stringify(cart));
+                    updateCartCount();
+                    updateCartDisplay();
+                }
+            }
+        }
+        
+        // Remove item from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('healthyBakeCart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+        }
+        
+        // Checkout function
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 50;
+            
+            // In a real application, this would redirect to a payment gateway
+            alert(`Thank you for your order! Total: ₹${total}\n\nYou can also place your order via WhatsApp on 7082236529`);
+        }
+        
+        // Login form handler
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // In a real application, this would validate against a backend
+            alert(`Login successful! Welcome back!`);
+            const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+            modal.hide();
+        });
+        
+        // Signup form handler
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // In a real application, this would create an account in a backend
+            alert(`Account created successfully! Welcome to Healthy Bake, ${fullname}!`);
+            const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+            modal.hide();
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showHome();
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
